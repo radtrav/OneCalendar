@@ -25,7 +25,7 @@ class Day extends Component {
           onMouseLeave={() => this.setState({ selected: false, showAddEvent: false })}
           style={{...styles, backgroundColor}}>
           {this.props.day}
-          {selected && showAddEvent && <AddEventPanel addEvent={this.props.addEvent}/>}
+          {selected && showAddEvent && <AddEventPanel />}
         </div>
       </div>
     );

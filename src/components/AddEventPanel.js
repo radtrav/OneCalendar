@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addEvent } from '../actions/index';
 
 const styles = {
   backgroundColor: 'white',
@@ -14,7 +16,8 @@ class AddEventPanel extends Component {
   handleChangeName = e => this.setState({ name: e.target.value });
   handleChangeTime = e => this.setState({ time: e.target.value });
   handleChangeDate = e => this.setState({ date: e.target.value });
-  handleSubmit = (e) => {
+
+  handleSubmit = e => {
     const { time, name, date } = this.state;
     this.props.addEvent({ time, name, date });
     e.preventDefault();
@@ -22,9 +25,15 @@ class AddEventPanel extends Component {
 
   render() {
     const { time, name, date } = this.state;
+    const { addEvent } = this.props;
     return (
       <div style={styles}>
-        <form onSubmit={this.handleSubmit}>
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            addEvent({ time, name, date });
+          }}
+        >
           <input
             type="text"
             name="time"
@@ -53,4 +62,8 @@ class AddEventPanel extends Component {
   }
 }
 
-export default AddEventPanel;
+const mapDispatchToProps = dispatch => ({
+  addEvent: event => dispatch(addEvent(event)),
+});
+
+export default connect(null, mapDispatchToProps)(AddEventPanel);
