@@ -20,7 +20,7 @@ class AddEventPanel extends Component {
     const { hour, minute, name } = this.state;
     return (
       <div className="add-event-panel">
-        <form onSubmit={this.handleSubmit} style={{ zIndex: 22 }}>
+        <form onSubmit={this.handleSubmit}>
           <div className="hour-minute-wrapper">
             <input
               className="input input-min-hour"

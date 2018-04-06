@@ -11,7 +11,7 @@ class DayContainer extends Component {
   handleMouseLeave = () =>
     this.setState({ selected: false, addingEvent: false });
 
-  setAddingEventToFalse = () => this.setState({ addingEvent: false });
+  setAddingEventToFalse = () => this.setState({ addingEvent: false, selected: false });
 
   isCurrentDay = () => {
     const { currentDate, day, month, year } = this.props;
