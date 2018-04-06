@@ -13,3 +13,10 @@
     align-items: center;
     justify-content: center;
 }
+
+@media only screen and (max-width: 600px) {
+    .day-wrapper {
+        width: 72px;
+        height: 50px;
+    }
+}

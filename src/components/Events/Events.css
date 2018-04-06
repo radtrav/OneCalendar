@@ -3,3 +3,9 @@
     height: 150px;
     width: 525px;
 }
+
+@media only screen and (max-width: 600px) {
+    .events-wrapper {
+        width: 100%;
+    }
+}

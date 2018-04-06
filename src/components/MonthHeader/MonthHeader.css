@@ -9,3 +9,11 @@
 .month-header-wrapper {
     display: flex;
 }
+
+
+@media only screen and (max-width: 600px) {
+    .month-header-wrapper {
+        width: 100%;
+        background-color: #dddddd;
+    }
+}

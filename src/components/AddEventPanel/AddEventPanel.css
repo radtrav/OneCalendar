@@ -26,3 +26,9 @@
     width: 126px;
 }
 
+@media only screen and (max-width: 600px) {
+    .add-event-panel {
+        width: 120px;
+    }
+}
+

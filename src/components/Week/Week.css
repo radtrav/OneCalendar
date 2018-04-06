@@ -3,3 +3,9 @@
     background-color: #eeeeee;
     width: 525px;
 }
+
+@media only screen and (max-width: 600px) {
+    .week-wrapper {
+        width: 100%;
+    }
+}

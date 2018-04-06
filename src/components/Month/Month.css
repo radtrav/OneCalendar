@@ -1,0 +1,13 @@
+.month-wrapper {
+    width: 525px;
+}
+
+@media only screen and (max-width: 600px) {
+    .month-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+    }
+}
