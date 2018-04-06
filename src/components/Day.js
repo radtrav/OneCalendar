@@ -2,8 +2,8 @@ import React from 'react';
 import AddEventPanel from './AddEventPanel';
 
 const styles = {
-  width: 50,
-  height: 50,
+  width: 75,
+  height: 40,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',

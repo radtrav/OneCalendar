@@ -1,0 +1,25 @@
+.month-switcher-wrapper {
+    align-items: center;
+    background-color: #17bc9b;
+    color: white;
+    display: flex;
+    height: 154px;
+    justify-content: space-between;
+    width: 525px;
+}
+
+.month-switch {
+    cursor: pointer;
+    padding: 20px;
+}
+
+.title {
+    margin-bottom: 10px;
+}
+
+.title-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

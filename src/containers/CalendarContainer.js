@@ -1,5 +1,5 @@
 import React from 'react';
-import Calendar from '../components/Calendar';
+import Calendar from '../components/Calendar/Calendar';
 import { connect } from 'react-redux';
 import { getEventsByMonth } from '../reducers/eventsReducer';
 import { nextMonth, previousMonth } from '../actions/index';
