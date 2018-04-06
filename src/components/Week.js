@@ -1,5 +1,5 @@
 import React from 'react';
-import Day from './Day';
+import DayContainer from './DayContainer';
 
 const styles = {};
 
@@ -8,7 +8,7 @@ const Week = ({ week, year, month }) => {
     <div style={{ display: 'flex' }}>
       {week.map((day, i) => {
         return (
-          <Day
+          <DayContainer
             key={`day-${i}`}
             day={day}
             year={year}

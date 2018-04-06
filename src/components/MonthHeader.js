@@ -1,10 +1,10 @@
 import React from 'react';
-import Day from './Day';
+import DayContainer from './DayContainer';
 
 const MonthHeader = () => (
   <div style={{ display: 'flex' }}>
     {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, i) => (
-      <Day key={`weekday-${i}`} day={day} />
+      <DayContainer key={`weekday-${i}`} day={day} />
     ))}
   </div>
 );

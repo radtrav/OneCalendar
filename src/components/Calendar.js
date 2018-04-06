@@ -1,29 +1,31 @@
 import React,  { Component } from 'react';
+import { connect } from 'react-redux';
+import { getEventsByMonth } from '../reducers/eventsReducer';
+import { nextMonth, previousMonth } from '../actions/index';
 import Month from './Month';
 import moment from 'moment';
 
 class Calendar extends Component {
-
-  getMonthRange = () => {
-    const focus = moment().startOf('month');
-    const start = moment(moment().startOf('year'));
-    const end = moment(moment().endOf('year'));
-    const size = end.diff(start, 'month') + 1;
-
-    const res = Array(size).fill(0).map((n, i) => focus.clone().add(n + i, 'months'));
-    console.log('res', res);
-
-    return '';
-  };
-
-
   render() {
+    const { referenceDate, events, nextMonth, previousMonth } = this.props;
     return (
       <div>
-        <Month />
+        <button onClick={previousMonth}>previous month</button>
+        <button onClick={nextMonth}>next month</button>
+        <Month referenceDate={referenceDate} events={events}  />
       </div>
     )
   }
 }
 
-export default Calendar;
+const mapStateToProps = ({ events, referenceDate }) => ({
+  events: getEventsByMonth(events, moment(referenceDate).month()),
+  referenceDate,
+});
+
+const mapDispatchToProps = dispatch => ({
+  nextMonth: () => dispatch(nextMonth()),
+  previousMonth: () => dispatch(previousMonth()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
