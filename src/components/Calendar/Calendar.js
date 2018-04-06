@@ -1,5 +1,6 @@
 import React from 'react';
-import Month from '../Month';
+import Month from '../Month/Month';
+import Events from '../Events/Events';
 import MonthSwitcher from '../MonthSwitcher/MonthSwitcher';
 import './Calendar.css';
 
@@ -10,7 +11,8 @@ const Calendar = ({ events, nextMonth, previousMonth, referenceDate }) => (
       previousMonth={previousMonth}
       nextMonth={nextMonth}
     />
-    <Month referenceDate={referenceDate} events={events} />,
+    <Month referenceDate={referenceDate} events={events} />
+    <Events events={events} />
   </div>
 );
 

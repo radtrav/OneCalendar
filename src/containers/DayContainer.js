@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Day from '../components/Day';
+import Day from '../components/Day/Day';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
@@ -8,7 +8,10 @@ class DayContainer extends Component {
 
   handleClick = () => this.setState({ addingEvent: true });
   handleMouseEnter = () => this.setState({ selected: true });
-  handleMouseLeave = () => this.setState({ selected: false, addingEvent: false });
+  handleMouseLeave = () =>
+    this.setState({ selected: false, addingEvent: false });
+
+  setAddingEventToFalse = () => this.setState({ addingEvent: false });
 
   isCurrentDay = () => {
     const { currentDate, day, month, year } = this.props;
@@ -20,7 +23,7 @@ class DayContainer extends Component {
 
   render() {
     const { day, year, month } = this.props;
-    const { addingEvent , selected } = this.state;
+    const { addingEvent, selected } = this.state;
 
     return (
       <Day
@@ -33,6 +36,7 @@ class DayContainer extends Component {
         onClick={this.handleClick}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
+        setAddingEventToFalse={this.setAddingEventToFalse}
       />
     );
   }

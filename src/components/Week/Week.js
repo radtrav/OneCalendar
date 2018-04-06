@@ -1,9 +1,10 @@
 import React from 'react';
-import DayContainer from '../containers/DayContainer';
+import DayContainer from '../../containers/DayContainer';
+import './Week.css';
 
 const Week = ({ week, year, month }) => {
   return (
-    <div style={{ display: 'flex' }}>
+    <div className="week-wrapper">
       {week.map((day, i) => {
         return (
           <DayContainer

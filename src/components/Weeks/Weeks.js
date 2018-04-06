@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import Week from './Week';
-import { chunk } from '../helpers/utils';
+import Week from '../Week/Week';
+import { chunk } from '../../helpers/utils';
 
 const Weeks = ({ referenceDate }) => {
   const initDaysWithOffset = firstDay =>

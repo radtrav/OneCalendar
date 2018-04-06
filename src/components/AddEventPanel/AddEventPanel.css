@@ -1,0 +1,28 @@
+.add-event-panel {
+    right: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #555454;
+    padding: 10px;
+    width: 150px;
+    height: 90px;
+    position: relative;
+    z-index: 22;
+}
+
+.hour-minute-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+.input {
+    margin: 3px;
+}
+.input-min-hour {
+    width: 57px;
+}
+
+.input-name {
+    width: 126px;
+}
+

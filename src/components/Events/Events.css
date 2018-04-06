@@ -1,0 +1,5 @@
+.events-wrapper {
+    overflow-y: auto;
+    height: 150px;
+    width: 525px;
+}

@@ -1,0 +1,8 @@
+.month-header {
+    background-color: #dddddd;
+    display: flex;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    width: 75px;
+}
