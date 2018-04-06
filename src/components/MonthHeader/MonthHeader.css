@@ -6,3 +6,6 @@
     justify-content: center;
     width: 75px;
 }
+.month-header-wrapper {
+    display: flex;
+}
