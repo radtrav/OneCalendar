@@ -3,18 +3,12 @@ import Day from '../components/Day';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
-const styles = {
-  width: 40,
-  height: 40,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundColor: 'lightgrey',
-  cursor: 'pointer',
-};
-
 class DayContainer extends Component {
   state = { selected: false, addingEvent: false };
+
+  handleClick = () => this.setState({ addingEvent: true });
+  handleMouseEnter = () => this.setState({ selected: true });
+  handleMouseLeave = () => this.setState({ selected: false, addingEvent: false });
 
   isCurrentDay = () => {
     const { currentDate, day, month, year } = this.props;
@@ -24,39 +18,21 @@ class DayContainer extends Component {
     return currentDay === day && currentMonth === month && currentYear === year;
   };
 
-  getBackgroundColor = () => {
-    const { selected } = this.state;
-    if (selected && this.isCurrentDay()) {
-      return 'orange';
-    } else if (this.isCurrentDay()) {
-      return 'purple';
-    } else if (selected) {
-      return 'aqua';
-    } else {
-      return 'lightgrey';
-    }
-  };
-
-  handleClick = () => this.setState({ addingEvent: true });
-  handleMouseEnter = () => this.setState({ selected: true });
-  handleMouseLeave = () => this.setState({ selected: false, addingEvent: false });
-
   render() {
     const { day, year, month } = this.props;
     const { addingEvent , selected } = this.state;
-    const backgroundColor = this.getBackgroundColor();
 
     return (
       <Day
         addingEvent={addingEvent}
         day={day}
         month={month}
+        isCurrentDay={this.isCurrentDay()}
         year={year}
         selected={selected}
         onClick={this.handleClick}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
-        style={{ ...styles, backgroundColor }}
       />
     );
   }
