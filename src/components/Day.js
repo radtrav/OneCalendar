@@ -13,8 +13,8 @@ const Day = (props) => {
     onMouseEnter,
     onMouseLeave,
   } = props;
+
   const showPanel = selected && addingEvent;
-  console.log('showPanel',showPanel);
 
   return (
     <div

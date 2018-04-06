@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import AddEventPanel from './AddEventPanel';
-import Day from './Day';
+import Day from '../components/Day';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
@@ -41,17 +40,6 @@ class DayContainer extends Component {
   handleClick = () => this.setState({ addingEvent: true });
   handleMouseEnter = () => this.setState({ selected: true });
   handleMouseLeave = () => this.setState({ selected: false, addingEvent: false });
-
-
-  renderAddEventPanel = () => {
-    const { selected, addingEvent } = this.state;
-    const { day, year, month } = this.props;
-
-    if (selected && addingEvent) {
-      return <AddEventPanel day={day} year={year} month={month} />;
-    }
-    return null;
-  };
 
   render() {
     const { day, year, month } = this.props;

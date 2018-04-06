@@ -1,7 +1,5 @@
 import React from 'react';
-import DayContainer from './DayContainer';
-
-const styles = {};
+import DayContainer from '../containers/DayContainer';
 
 const Week = ({ week, year, month }) => {
   return (

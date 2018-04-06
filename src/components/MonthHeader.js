@@ -1,5 +1,5 @@
 import React from 'react';
-import DayContainer from './DayContainer';
+import DayContainer from '../containers/DayContainer';
 
 const MonthHeader = () => (
   <div style={{ display: 'flex' }}>
