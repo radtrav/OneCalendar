@@ -21,19 +21,27 @@ class Day extends Component {
     const currentDay = moment(currentDate).date();
     const currentMonth = moment(currentDate).month() + 1;
     const currentYear = moment(currentDate).year();
+    return currentDay === day && currentMonth === month && currentYear === year;
+  };
 
-    console.log('currentday', currentDay);
-    return (
-      currentDay === day && currentMonth === month && currentYear === year
-    );
+  getBackgroundColor = () => {
+    const { selected } = this.state;
+    if (selected && this.isCurrentDay()) {
+      return 'orange';
+    } else if (this.isCurrentDay()) {
+      return 'purple';
+    } else if (selected) {
+      return 'aqua';
+    } else {
+      return 'lightgrey';
+    }
   };
 
   render() {
     const { selected, showAddEvent } = this.state;
     const { day, year, month } = this.props;
-    let backgroundColor;
-    backgroundColor = this.isCurrentDay() && 'orange';
-    // backgroundColor = selected ? 'aqua' : 'lightgrey';
+    const backgroundColor = this.getBackgroundColor();
+
     return (
       <div>
         <div
