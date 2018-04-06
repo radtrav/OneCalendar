@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import AddEventPanel from './AddEventPanel';
+import { connect } from 'react-redux';
+import moment from 'moment';
 
 const styles = {
   width: 40,
@@ -14,10 +16,24 @@ const styles = {
 class Day extends Component {
   state = { selected: false, showAddEvent: false };
 
+  isCurrentDay = () => {
+    const { currentDate, day, month, year } = this.props;
+    const currentDay = moment(currentDate).date();
+    const currentMonth = moment(currentDate).month() + 1;
+    const currentYear = moment(currentDate).year();
+
+    console.log('currentday', currentDay);
+    return (
+      currentDay === day && currentMonth === month && currentYear === year
+    );
+  };
+
   render() {
     const { selected, showAddEvent } = this.state;
     const { day, year, month } = this.props;
-    const backgroundColor = selected ? 'aqua' : 'lightgrey';
+    let backgroundColor;
+    backgroundColor = this.isCurrentDay() && 'orange';
+    // backgroundColor = selected ? 'aqua' : 'lightgrey';
     return (
       <div>
         <div
@@ -31,11 +47,7 @@ class Day extends Component {
           {day}
           {selected &&
             showAddEvent && (
-              <AddEventPanel
-                day={day}
-                year={year}
-                month={month}
-              />
+              <AddEventPanel day={day} year={year} month={month} />
             )}
         </div>
       </div>
@@ -43,4 +55,6 @@ class Day extends Component {
   }
 }
 
-export default Day;
+const mapStateToProps = ({ currentDate }) => ({ currentDate });
+
+export default connect(mapStateToProps)(Day);

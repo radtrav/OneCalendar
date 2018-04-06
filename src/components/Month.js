@@ -56,9 +56,6 @@ class Month extends Component {
 }
 
 const mapStateToProps = ({ events, referenceDate }) => {
-  // console.log('month',moment(month).month());
-  // console.log('getEventsByMonth(events, moment(month).month())',getEventsByMonth(events, moment(month).month()))
-
   return {
     events: getEventsByMonth(events, moment(referenceDate).month()),
     referenceDate,
