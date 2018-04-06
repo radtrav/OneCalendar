@@ -15,7 +15,7 @@ The app allows users to create appointments for any date and see already created
   - [x] In the bottom of the calendar, show a list of events for the currently active month only.
       - Events should be sorted by date/time
       - Events should have the following format: "{Day} {Month} {Year} {HH}:{MM} - {EventName}"
-  - [ ] Make it look right on mobile devices
+  - [x] Make it look right on mobile devices
   - [x] Make a design change to improve the user experience and/or style it according to OneClass design     
 
 ## Set up
