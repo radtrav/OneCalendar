@@ -17,8 +17,10 @@ class Month extends Component {
   getFirstDayInMonth = date => date.startOf('month');
 
   renderWeeks = () => {
-    const { month } = this.props;
-    const firstOfMonth = this.getFirstDayInMonth(moment(month));
+    const { referenceDate } = this.props;
+    const year = moment(referenceDate).year();
+    const month = moment(referenceDate).month() + 1;
+    const firstOfMonth = this.getFirstDayInMonth(moment(referenceDate));
     const daysInMonth = this.createWeekOffset(firstOfMonth);
 
     for (let i = 0; i < firstOfMonth.daysInMonth(); i += 1) {
@@ -26,20 +28,25 @@ class Month extends Component {
     }
 
     return this.getWeeksInMonth(daysInMonth).map((week, i) => (
-      <Week key={`week-${i}`} week={week} />
+      <Week
+        key={`week-${i}`}
+        week={week}
+        year={year}
+        month={month}
+      />
     ));
   };
 
   render() {
-    const { month } = this.props;
+    const { referenceDate } = this.props;
     return (
       <div>
-        {moment(month).format('YYYY MMM DD')}
+        {moment(referenceDate).format('YYYY MMM DD')}
         <button onClick={() => this.props.previousMonth()}>
           previous month
         </button>
         <button onClick={() => this.props.nextMonth()}>next month</button>
-        <div>{moment(month)._d.getMonth()}</div>
+        <div>{moment(referenceDate)._d.getMonth()}</div>
         <MonthHeader />
         {this.renderWeeks()}
         <EventList events={this.props.events} />
@@ -48,14 +55,13 @@ class Month extends Component {
   }
 }
 
-const mapStateToProps = ({ month, events, currentDate }) => {
+const mapStateToProps = ({ events, referenceDate }) => {
   // console.log('month',moment(month).month());
   // console.log('getEventsByMonth(events, moment(month).month())',getEventsByMonth(events, moment(month).month()))
 
   return {
-    month,
-    events: getEventsByMonth(events, moment(month).month()),
-    currentDate,
+    events: getEventsByMonth(events, moment(referenceDate).month()),
+    referenceDate,
   };
 };
 

@@ -16,16 +16,27 @@ class Day extends Component {
 
   render() {
     const { selected, showAddEvent } = this.state;
+    const { day, year, month } = this.props;
     const backgroundColor = selected ? 'aqua' : 'lightgrey';
     return (
       <div>
         <div
-          onClick={() => this.setState({ showAddEvent: true }) }
+          onClick={() => this.setState({ showAddEvent: true })}
           onMouseEnter={() => this.setState({ selected: true })}
-          onMouseLeave={() => this.setState({ selected: false, showAddEvent: false })}
-          style={{...styles, backgroundColor}}>
-          {this.props.day}
-          {selected && showAddEvent && <AddEventPanel />}
+          onMouseLeave={() =>
+            this.setState({ selected: false, showAddEvent: false })
+          }
+          style={{ ...styles, backgroundColor }}
+        >
+          {day}
+          {selected &&
+            showAddEvent && (
+              <AddEventPanel
+                day={day}
+                year={year}
+                month={month}
+              />
+            )}
         </div>
       </div>
     );

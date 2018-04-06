@@ -1,5 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
+import moment from 'moment';
 
-const Event = ({ event: { name, time, date } }) => <div>{`${name} ${time} ${date} `}</div>;
+const Event = (props) => {
+  const { hour, minute, day, month, year, name } = props.event;
+  const date = moment(`${year}-${month}-${day}  `).format('D MMMM YYYY');
+  return <div>{`${date} ${hour}-${minute} : ${name}d `}</div>;
+};
 
 export default Event;

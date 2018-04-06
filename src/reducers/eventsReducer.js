@@ -1,9 +1,10 @@
 import moment from 'moment';
 
 const DEFAULT_EVENTS = [
-  { name: 'Eat a burrito', time: '11-00', date: '2018-01-06' },
-  { name: 'Learn React', time: '11-00', date: '2018-02-06' },
-  { name: 'Eat a burrito', time: '11-00', date: '2018-03-06' },
+  { hour: 5, minute: 30, day: 2, month: 2, year:2018, name: 'Learn Elixer' },
+  { hour: 5, minute: 30, day: 2, month: 3, year:2018, name: 'Learn Elixer' },
+  { hour: 5, minute: 30, day: 2, month: 4, year:2018, name: 'Learn Elixer' },
+  { hour: 5, minute: 30, day: 2, month: 5, year:2018, name: 'Learn Elixer' },
 ];
 
 export default function events(state = DEFAULT_EVENTS, action) {
@@ -19,8 +20,7 @@ export default function events(state = DEFAULT_EVENTS, action) {
 
 export const getEventsByMonth = (events, month) => {
   return events.filter(event => {
-    console.log('moment(event.date).month', moment(event.date).month());
-    console.log('month + 1', month );
-    return moment(event.date).month() === month ;
+
+    return event.month - 1 === month ;
   });
 };

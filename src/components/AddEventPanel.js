@@ -9,44 +9,45 @@ const styles = {
 };
 
 class AddEventPanel extends Component {
-  state = { time: '', name: '', date: '' };
+  state = { hour: '', name: '', minute: '' };
   handleChange(event) {
     this.setState({ value: event.target.value });
   }
   handleChangeName = e => this.setState({ name: e.target.value });
-  handleChangeTime = e => this.setState({ time: e.target.value });
-  handleChangeDate = e => this.setState({ date: e.target.value });
+  handleChangeHour = e => this.setState({ hour: e.target.value });
+  handleChangeMinute = e => this.setState({ minute: e.target.value });
 
   handleSubmit = e => {
-    const { time, name, date } = this.state;
-    this.props.addEvent({ time, name, date });
+    const { hour, name, minute } = this.state;
+    const { day, month, year } = this.props;
+    this.props.addEvent({ hour, name, minute, day, month, year });
     e.preventDefault();
   };
 
   render() {
-    const { time, name, date } = this.state;
-    const { addEvent } = this.props;
+    const { hour, minute, name  } = this.state;
+    const { addEvent, day, month, year } = this.props;
     return (
       <div style={styles}>
         <form
           onSubmit={e => {
             e.preventDefault();
-            addEvent({ time, name, date });
+            addEvent({ hour, name, minute, day, month, year });
           }}
         >
           <input
             type="text"
             name="time"
-            value={time}
-            placeholder="time"
-            onChange={this.handleChangeTime}
+            value={hour}
+            placeholder="hour"
+            onChange={this.handleChangeHour}
           />
           <input
             type="text"
-            name="date"
-            value={date}
-            placeholder="date"
-            onChange={this.handleChangeDate}
+            name="minute"
+            value={minute}
+            placeholder="minute"
+            onChange={this.handleChangeMinute}
           />
           <input
             type="text"
