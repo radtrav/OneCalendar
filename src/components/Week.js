@@ -5,11 +5,11 @@ const styles = {
 
 };
 
-const Week = ({week}) => {
+const Week = ({week, addEvent}) => {
   return (
     <div style={{ display: 'flex'}} >
       {week.map((day, i) => {
-        return <Day key={`day-${i}`} day={day}/>
+        return <Day addEvent={addEvent} key={`day-${i}`} day={day}/>
       })}
     </div>);
 };

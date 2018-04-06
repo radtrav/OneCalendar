@@ -1,51 +1,68 @@
 import React, { Component } from 'react';
-import Week from './Week';
-import { extendMoment } from 'moment-range';
 import Moment from 'moment';
+import { extendMoment } from 'moment-range';
+import { chunk } from '../helpers/utils';
+import EventList from './EventList';
+import MonthHeader from './MonthHeader';
+import Week from './Week';
 const moment = extendMoment(Moment);
+
+const DEFAULT_EVENTS = [
+  {name: 'Eat a burrito', time: '11-00', date: '1 February 2018' },
+  {name: 'Learn React', time: '11-00', date: '1 February 2018' },
+  {name: 'Eat a burrito', time: '11-00', date: '1 February 2018' },
+];
 
 class Month extends Component {
   state = {
     date: moment(),
+    events: DEFAULT_EVENTS,
   };
 
-  // a utility function to chunk an array
-  chunk = (array, size) => {
-    const chunked = [];
-    let index = 0;
+  createWeekOffset = firstOfMonth => new Array(firstOfMonth.weekday()).fill('');
+  getWeeksInMonth = daysInMonth => chunk(daysInMonth, 7);
+  getFirstDayInMonth = date => date.add(1, 'month').startOf('month');
+  addEvent = (event) => {
+    console.log('args', arguments);
+    console.log('event', event);
+    console.log('state', this.state);
+    const { events } = this.state;
+    const newEvents = [...events, event];
+    this.setState({ events: newEvents });
+  };
 
-    while (index < array.length) {
-      chunked.push(array.slice(index, index + size));
-      index += size;
+  renderWeeks = month => {
+    const { date } = this.state;
+    const firstOfMonth = this.getFirstDayInMonth(date);
+    const daysInMonth = this.createWeekOffset(firstOfMonth);
+
+    for (let i = 0; i < firstOfMonth.daysInMonth(); i += 1) {
+      daysInMonth.push(moment(firstOfMonth.clone().add(i, 'day'))._d.getDate());
     }
 
-    return chunked;
+    return this.getWeeksInMonth(daysInMonth).map((week, i) => (
+      <Week addEvent={this.addEvent} key={`week-${i}`} week={week} />
+    ));
   };
 
-  // returns an array of weeks in the month
-  getWeeks = month => {
-    const start = this.state.date
-      .add(1, 'month')
-      .startOf('month');
 
-    // create an array of days offset so that the weekdays and the dates lign up
-    const days = Array(start.weekday()).fill('');
+  nextMonth = () =>
+    this.setState({ date: this.state.date.clone().add(0, 'months') });
 
-    for (let i = 0; i < start.daysInMonth(); i += 1) {
-      days.push(moment(start.clone().add(i, 'day'))._d.getDate());
-    }
-    console.log(['s', 'm', 't', 'w', 't', 'f', 's']);
-    console.log(this.chunk(days, 7));
-
-    return this.chunk(days, 7);
-  };
-
+  previousMonth = () =>
+    this.setState({ date: this.state.date.clone().subtract(1, 'months') });
 
   render() {
+    const { date, events } = this.state;
     return (
       <div>
-        {[['S', 'M', 'T', 'W', 'T', 'F', 'S']].map((week, i) => <Week key={`week-${i}`} week={week}/>)}
-        {this.getWeeks().map((week, i) => <Week key={`week-${i}`} week={week}/>)}
+        {date.format('YYYY MMM DD')}
+        <button onClick={this.previousMonth}> "previous" </button>
+        <button onClick={this.nextMonth}> "next" </button>
+        <div>{date._d.getMonth()}</div>
+        <MonthHeader />
+        {this.renderWeeks()}
+        <EventList events={this.state.events} />
       </div>
     );
   }
