@@ -3,7 +3,7 @@ import MonthHeader from '../MonthHeader/MonthHeader';
 import Weeks from '../Weeks/Weeks';
 import './Month.css';
 
-const Month = ({ referenceDate, events }) => {
+const Month = ({ referenceDate }) => {
   return (
     <div className="month-wrapper">
       <MonthHeader />

@@ -16,7 +16,6 @@ export default function events(state = DEFAULT_EVENTS, action) {
   switch (action.type) {
     case ADD_EVENT:
       return [...state, action.event];
-      break;
     default:
       return state;
   }
