@@ -24,7 +24,7 @@ const Day = props => {
     backgroundColor = 'orange';
   } else if (isCurrentDay) {
     backgroundColor = '#17bc9b';
-  } else if (selected) {
+  } else if (day && selected) {
     backgroundColor = '#e3e2e2';
   } else {
     backgroundColor = '#eeeeee';
@@ -40,7 +40,7 @@ const Day = props => {
     >
       <div className="day">{day}</div>
       <div>
-        {showPanel && (
+        {showPanel && day && (
           <AddEventPanelContainer
             setAddingEventToFalse={setAddingEventToFalse}
             day={day}
