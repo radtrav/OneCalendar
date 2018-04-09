@@ -1,6 +1,5 @@
 import { ADD_EVENT } from '../actions/actionTypes';
 
-
 const DEFAULT_EVENTS = [
   { hour: 5, minute: 30, day: 2, month: 2, year: 2018, name: 'Learn Elixir' },
   { hour: 9, minute: 30, day: 5, month: 3, year: 2018, name: 'Eat Pie' },

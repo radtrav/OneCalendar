@@ -11,7 +11,6 @@ ReactDOM.render(
   <Provider store={store}>
     <CalendarContainer />
   </Provider>,
-
   document.getElementById('root')
 );
 registerServiceWorker();
